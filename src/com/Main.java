@@ -22,6 +22,7 @@ public class Main {
         SquaresList squaresList = new SquaresList();
         RightPrism prism = new RightPrism();
         Prisms prisms;
+        PrismsList prismsList = new PrismsList();
 
         System.out.print("Введите количество квадратов:");
         int numSquares = scan.nextInt();
@@ -33,7 +34,7 @@ public class Main {
 
 
 //        part1(square, squares, prism, prisms, numSquares, numPrisms);
-        part2(square, squares, squaresList, prism, prisms, numSquares, numPrisms);
+        part2(square, squares, squaresList, prism, prisms, numSquares, numPrisms, prismsList);
     }
 
     private static void part1(Square square, Squares squares, RightPrism prism, Prisms prisms, int numSquares, int numPrisms) {
@@ -67,7 +68,7 @@ public class Main {
         System.out.println("\n Призма с максимальной диагональю: " + prisms.getPrisms()[prisms.maxDiagonal()]);
     }
 
-    private static void part2(Square square, Squares squares, SquaresList squaresList, RightPrism prism, Prisms prisms, int numSquares, int numPrisms) {
+    private static void part2(Square square, Squares squares, SquaresList squaresList, RightPrism prism, Prisms prisms, int numSquares, int numPrisms, PrismsList prismsList) {
         int side;
 //        System.out.println("\n\nКвадраты:");
         for (int i = 0; i < numSquares; i++) {
@@ -78,20 +79,20 @@ public class Main {
             squaresList.addSquares(square);
         }
 
-//        int height;
-////        System.out.println("\n\nПризмы:");
-//        for (int i = 0; i < numPrisms; i++) {
-//            side = -1;
-//            height = -1;
-//            while (prism.CheckCorrectSide("" + (side = (int) (Math.random() * 11 - 5))) < 0 || prism.CheckCorrectHeight("" + (height = (int) (Math.random() * 11 + 5))) < 0) {
-//            }
-//            prism = new RightPrism(side, height);
-//            prisms.setPrismAt(i, prism);
-//        }
+        int height;
+//        System.out.println("\n\nПризмы:");
+        for (int i = 0; i < numPrisms; i++) {
+            side = -1;
+            height = -1;
+            while (prism.CheckCorrectSide("" + (side = (int) (Math.random() * 11 - 5))) < 0 || prism.CheckCorrectHeight("" + (height = (int) (Math.random() * 11 + 5))) < 0) {
+            }
+            prism = new RightPrism(side, height);
+            prismsList.addPrisms(prism);
+        }
 
-        System.out.println(squaresList +"\n\n");//+ prisms
-        System.out.println("\n Квадрат с максимальной площадью: " + squares.getSquares()[squares.maxSquare()]); //squaresList
-        System.out.println("\n Призма с максимальной диагональю: " + prisms.getPrisms()[prisms.maxDiagonal()]);
+        System.out.println(squaresList +"\n\n"+ prismsList);
+        System.out.println("\n Квадрат с максимальной площадью: " + squaresList.maxSquare());
+        System.out.println("\n Призма с максимальной диагональю: " + Formatter.toDouble(prismsList.maxDiagonal()));
     }
 }
 

@@ -27,4 +27,14 @@ public class SquaresList {
     public void remove(Square square){
         squares.remove(square);
     }
+
+    public double maxSquare() {
+        double max = 0;
+        for (Square square : squares) {
+            if (max < square.GetSquare()) {
+                max = square.GetSquare();
+            }
+        }
+        return max;
+    }
 }
